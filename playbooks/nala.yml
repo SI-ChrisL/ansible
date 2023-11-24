@@ -4,5 +4,6 @@
   tasks:
     - name: update nala packages
       nala:
-        update_cache: yes
-        upgrade: yes
+        command: update
+        args:
+          - '-y'
