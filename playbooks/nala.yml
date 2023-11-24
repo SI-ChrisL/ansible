@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: update nala packages
+      nala:
+        update_cache: yes
+        upgrade: yes
