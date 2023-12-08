@@ -1,0 +1,9 @@
+---
+- name: Install Docker engine
+  hosts: all
+  become: true
+  tasks:
+    - name: Remove Machine ID
+      command: rm -f /etc/machine-id && rm /var/lib/dbus/machine-id
+    - name: Generate new Machine ID
+      command: dbus-uuidgen --ensure=/etc/machine-id && dbus-uuidgen --ensure
