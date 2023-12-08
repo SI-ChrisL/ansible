@@ -1,9 +1,15 @@
----
-- name: Regen Machine ID
-  hosts: all
-  become: true
+- hosts: all
+  become: yes
+
   tasks:
-    - name: Remove Machine ID
-      command: rm -f /etc/machine-id && rm /var/lib/dbus/machine-id
-    - name: Generate new Machine ID
-      command: dbus-uuidgen --ensure=/etc/machine-id && dbus-uuidgen --ensure
+    - name: Generate new machine ID (Debian)
+      command: rm -f /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id
+      when: ansible_os_family == "Debian"
+
+    - name: Generate new machine ID (Fedora)  
+      command: rm -f /etc/machine-id && dbus-uuidgen --ensure
+      when: ansible_os_family == "RedHat"
+
+    - name: Reload dbus daemon 
+      systemd: 
+        daemon_reload: yes
