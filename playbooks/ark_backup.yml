@@ -9,7 +9,7 @@
         chdir: /home/ubuntu/ASA_Server_Docker/
     - name: Find Backups
       find:
-        paths: /home/ubuntu/ark_backup
+        paths: /home/ubuntu/ark_backup/
         patterns: 'backup*'
       register: ark_backups
     - name: Move Backups
