@@ -1,6 +1,7 @@
 - name: Backup Ark Server
   hosts: all
   become: false
+  gather_facts: false
   tasks:
     - name: Start Backup
       command: "backup"
