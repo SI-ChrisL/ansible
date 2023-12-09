@@ -1,7 +1,6 @@
 - name: Backup Ark Server
   hosts: all
   become: false
-  remote_user: ubuntu
   gather_facts: false
   tasks:
     - name: Start Backup
