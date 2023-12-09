@@ -4,6 +4,8 @@
   gather_facts: false
   tasks:
     - name: Start Backup
-      command: "/home/ubuntu/ASA_Server_Docker/manager.sh backup"
+      shell: "/home/ubuntu/ASA_Server_Docker/manager.sh backup"
+      args:
+        chdir: /home/ubuntu/ASA_Server_Docker/
     - name: Copy Backup off Server
       command: "mv /home/ubuntu/ark_backup/backup* /mnt/asa/Backup/" 
