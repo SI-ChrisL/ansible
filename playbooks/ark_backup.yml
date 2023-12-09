@@ -3,6 +3,16 @@
   become: false
   gather_facts: false
   tasks:
+    - name: Find Extra Game Saves
+      find:
+        paths: /home/ubuntu/ASA_Server_Docker/ark_data/ShooterGame/Saved/SavedArks/TheIsland_WP
+        patterns: 'TheIsland_WP_*.ark'
+      register: ark_extra_saves
+    - name: Delete Extra Game Saves
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ ark_extra_saves.files }}"   
     - name: Start Backup
       shell: "/home/ubuntu/ASA_Server_Docker/manager.sh backup"
       args:
