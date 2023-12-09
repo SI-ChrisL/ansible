@@ -7,5 +7,19 @@
       shell: "/home/ubuntu/ASA_Server_Docker/manager.sh backup"
       args:
         chdir: /home/ubuntu/ASA_Server_Docker/
-    - name: Copy Backup off Server
-      command: "mv /home/ubuntu/ark_backup/backup* /mnt/asa/Backup/" 
+    - name: Find Backups
+      find:
+        paths: /home/ubuntu/ark_backup
+        patterns: 'backup*'
+      register: ark_backups
+    - name: Move Backups
+      copy:
+        src: "{{ item.path }}"
+        dest: /mnt/asa/Backup/
+        remote_src: yes 
+      loop: "{{ ark_backups.files }}"
+    - name: Delete Backups
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ ark_backups.files }}"
