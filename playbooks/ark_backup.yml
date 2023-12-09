@@ -1,0 +1,8 @@
+- name: Backup Ark Server
+  hosts: all
+  become: false
+  tasks:
+    - name: Start Backup
+      command: "backup"
+    - name: Copy Backup off Server
+      command: "mv ark_backup/backup* /mnt/asa/Backup/" 
