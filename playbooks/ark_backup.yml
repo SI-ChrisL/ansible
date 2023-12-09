@@ -1,9 +1,10 @@
 - name: Backup Ark Server
   hosts: all
   become: false
+  remote_user: ubuntu
   gather_facts: false
   tasks:
     - name: Start Backup
-      command: "/home/ubuntu/ASA_Server_Docker/manager.sh backup"
+      command: "backup"
     - name: Copy Backup off Server
       command: "mv ark_backup/backup* /mnt/asa/Backup/" 
