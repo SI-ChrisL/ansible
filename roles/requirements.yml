@@ -1,2 +1,6 @@
+---
 collections:
   - community.general
+  - ansible.utils
+  - ansible.builtin
+  - community.crypto
