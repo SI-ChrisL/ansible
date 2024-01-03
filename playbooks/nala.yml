@@ -11,4 +11,5 @@
 
     - name: Upgrade all packages
       nala:
+        cache: yes    
         upgrade: yes
