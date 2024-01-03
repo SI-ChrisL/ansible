@@ -9,7 +9,6 @@
         state: latest
         update_cache: yes
 
-    - name: Update all packages using Nala
+    - name: Upgrade all packages
       nala:
-        command: update
-        args: -y
+        upgrade: yes
