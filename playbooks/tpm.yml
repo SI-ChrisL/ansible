@@ -1,0 +1,14 @@
+- name: tmux plugin manager install
+  hosts: all
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Clone tpm repo
+      git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: ~/.tmux/plugins/tpm
+      force: yes
+      
+    - name: Copy tpm config file
+      template: src=../templates/tmux.conf dest=~/.tmux.conf
+      
